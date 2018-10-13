@@ -5,6 +5,7 @@ using CompleetKassa.ViewModels.Commands;
 using MahApps.Metro.Controls;
 using MahApps.Metro.IconPacks;
 
+
 namespace CompleetKassa.ViewModels
 {
 	public class MainViewModel : BaseViewModel
@@ -31,7 +32,10 @@ namespace CompleetKassa.ViewModels
 
 		public ICommand OnChangePageCommand { get; private set; }
 
-		public MainViewModel () : base ("Main","#fff", "Icons/product.png")
+    
+
+
+        public MainViewModel () : base ("Main","#fff", "Icons/product.png")
 		{
             DefaultViewModel = new SalesViewModel();
 
@@ -40,6 +44,9 @@ namespace CompleetKassa.ViewModels
             _currentPageViewModel = DefaultViewModel;
 
             OnChangePageCommand = new BaseCommand (ChangePageCommand);
+
+
+
 
 		}
 
@@ -62,10 +69,11 @@ namespace CompleetKassa.ViewModels
                 new CustomersViewModel {
 					OnClosePageCommand = new BaseCommand (ClosePage)
 				},
-				new AccessoriesViewModel{
-					OnClosePageCommand = new BaseCommand (ClosePage)
-				},
-						 new TotalsViewModel{
+                   new TransactionsViewModel{
+                    OnClosePageCommand = new BaseCommand (ClosePage)
+                },
+
+                         new TotalsViewModel{
 					OnClosePageCommand = new BaseCommand (ClosePage)
 				},
 						 new UsersViewModel{
@@ -80,7 +88,7 @@ namespace CompleetKassa.ViewModels
 						 new LockViewModel{
 					OnClosePageCommand = new BaseCommand (ClosePage)
 				},
-			};
+            };
 		}
 
 		private void ClosePage (object obj)

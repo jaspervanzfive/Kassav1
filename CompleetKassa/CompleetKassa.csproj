@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>compleet.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
@@ -122,6 +125,14 @@
       <Project>{dfd048d3-b371-4d38-bf6f-ece305fb7d73}</Project>
       <Name>CompleetKassa.Converters</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CompleetKassa.DataTypes\CompleetKassa.DataTypes.csproj">
+      <Project>{4a30f1e9-0a08-4347-9324-cdcf24f79aba}</Project>
+      <Name>CompleetKassa.DataTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CompleetKassa.Models\CompleetKassa.Models.csproj">
+      <Project>{c4466761-0b4d-4bbc-a70e-cbcc77c98c18}</Project>
+      <Name>CompleetKassa.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CompleetKassa.ViewModels\CompleetKassa.ViewModels.csproj">
       <Project>{d961a431-f2a9-407e-ac14-9ab8027b1003}</Project>
       <Name>CompleetKassa.ViewModels</Name>
@@ -195,6 +206,42 @@
     <Resource Include="Icons\users.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\LoginBG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\compleekassalogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\locked-padlock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\man-user.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="compleet.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\compleet.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\envelope.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\person.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

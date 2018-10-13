@@ -213,11 +213,16 @@ namespace CompleetKassa.ViewModels
 
         private void GetCategories(IList<Product> products)
         {
+            //Dummy Colors of Categories
+            String[] categories_colors= new string[] { "#D0A342", "#B422B9", "#6BB4FA", "#39985D", "#CEBA5E", "#962525" , "#7E8085" };
+
             // TODO: Categories can be obtained from DB especially the color
             var categories = products.Select(x => x.Category).Distinct();
 
+            int z = 0;
             foreach (var category in categories)
             {
+
                 var subCategories = products.Where(x => x.Category == category)
                                     .Select(x => x.SubCategory).Distinct();
 
@@ -227,17 +232,23 @@ namespace CompleetKassa.ViewModels
                     productSubCategories.Add(new ProductSubCategory
                     {
                         Name = subCategory,
-                        Color = "Red"
+                         Color = categories_colors[z]
                     });
                 }
 
                 _categories.Add(new ProductCategory
                 {
                     Name = category,
-                    Color = "#B422B9",
+                    Color = categories_colors[z],
                     SubCategories = productSubCategories
                 });
+
+               // Console.WriteLine("11");
+
+                 z++;
             }
+
+         
         }
 
         private void GetProducts ()
@@ -246,7 +257,7 @@ namespace CompleetKassa.ViewModels
                  new Product
                 {
                     ID = 1,
-                    Label = "Cheyene Hawk pen Purle with 25mm grip including spacersd dasdas das das",
+                    Label = "Cheyene Hawk pen Purle with 25mm grip including spacersd dasdas das d ds ds dsas",
                     ImagePath ="/CompleetKassa.ViewModels;component/Images/sample.png",
                     Price = 100.0m,
                     Description = "This is sample 1",
@@ -267,7 +278,7 @@ namespace CompleetKassa.ViewModels
                 {
                     ID = 3,
                     Label = "Bag 1",
-                    ImagePath ="/CompleetKassa.ViewModels;component/Images/sample.png",
+                    ImagePath ="/CompleetKassa.ViewModels;component/Images/sumi_black.jpg",
                     Price = 20.0m,
                     Description = "This is sample 2",
                     Category = "Bag",
@@ -292,7 +303,72 @@ namespace CompleetKassa.ViewModels
                     Description = "This is Belt 1",
                     Category = "Belt",
                     SubCategory = "Men's Belt"
+                },
+                new Product
+                {
+                    ID = 5,
+                    Label = "Belt 11",
+                    ImagePath ="/CompleetKassa.ViewModels;component/Images/sample.png",
+                    Price = 10.0m,
+                    Description = "This is Belt 1",
+                    Category = "Sterfilters",
+                    SubCategory = "Men's BeltXX"
+                },
+                new Product
+                {
+                    ID = 6,
+                    Label = "Nike Shoes",
+                    ImagePath ="/CompleetKassa.ViewModels;component/Images/nike.jpg",
+                    Price = 10.0m,
+                    Description = "This is Belt 1",
+                    Category = "Shoes",
+                    SubCategory = "Basketball"
                 }
+                ,
+                new Product
+                {
+                    ID =7,
+                    Label = "Nike Shoes2",
+                    ImagePath ="/CompleetKassa.ViewModels;component/Images/nike.jpg",
+                    Price = 10.0m,
+                    Description = "This is Belt 1",
+                    Category = "Shoes",
+                    SubCategory = "Basketball"
+                }
+                ,
+                new Product
+                {
+                    ID =7,
+                    Label = "Nike Shoes2",
+                    ImagePath ="/CompleetKassa.ViewModels;component/Images/nike.jpg",
+                    Price = 10.0m,
+                    Description = "This is Belt 1",
+                    Category = "SkylightFilters",
+                    SubCategory = "Default"
+                }
+                ,
+                new Product
+                {
+                    ID =7,
+                    Label = "Nike Shoes2",
+                    ImagePath ="/CompleetKassa.ViewModels;component/Images/nike.jpg",
+                    Price = 10.0m,
+                    Description = "This is Belt 1",
+                    Category = "Filtersets",
+                        SubCategory = "Default"
+                }
+                ,
+                new Product
+                {
+                    ID =7,
+                    Label = "Nike Shoes2",
+                    ImagePath ="/CompleetKassa.ViewModels;component/Images/nike.jpg",
+                    Price = 10.0m,
+                    Description = "This is Belt 1",
+                    Category = "UV Filters",
+                   SubCategory = "Default"
+                }
+
             };
 
             GetCategories(_dbProductList);

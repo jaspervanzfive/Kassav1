@@ -10,6 +10,7 @@ namespace CompleetKassa.DataTypes.Enumerations
     {
         Shoes = 0,
         Bags,
-        Accessories
+        Accessories,
+
     }
 }

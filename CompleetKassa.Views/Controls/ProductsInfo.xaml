@@ -8,11 +8,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <Style TargetType="Button" x:Key="TabButtonFirst">
+         
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="0,0,0,0" Background="White">
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--Width="{Binding RelativeSource={RelativeSource AncestorType=local:ProductsInfo}, Path=ImageWidth}"
+                    Margin="{Binding RelativeSource={RelativeSource AncestorType=local:ProductsInfo}, Path=ImageMargin}"-->
         <c:ProductToPurchasedConverter x:Key="PurchasedItemConverter"/>
         <DataTemplate x:Key="ProductTemplate">
             <Button Command="{Binding RelativeSource={RelativeSource AncestorType=local:ProductsInfo}, Path=PurchasedItem}"
-                    Width="{Binding RelativeSource={RelativeSource AncestorType=local:ProductsInfo}, Path=ImageWidth}"
-                    Margin="{Binding RelativeSource={RelativeSource AncestorType=local:ProductsInfo}, Path=ImageMargin}">
+                     Margin="{Binding RelativeSource={RelativeSource AncestorType=local:ProductsInfo}, Path=ImageMargin}"
+                    Style="{StaticResource TabButtonFirst}"
+                    >
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource PurchasedItemConverter}">
                         <Binding Path="ID"/>
@@ -23,7 +38,32 @@
                 <Button.ToolTip>
                     <TextBlock Text="{Binding Description}" />
                 </Button.ToolTip>
-                <StackPanel Orientation="Vertical">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                         BorderBrush="{TemplateBinding BorderBrush}"
+                         BorderThickness="{TemplateBinding BorderThickness}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.7*"/>
+                                        <RowDefinition Height="0.3*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Source="{Binding ImagePath}"  Stretch="UniformToFill"/>
+
+
+                                    <StackPanel Grid.Row="1" Background="#9B9B9B" Opacity="0.9" >
+                                        <TextBlock Margin="5,8" TextWrapping="WrapWithOverflow" Text="{Binding Label}" Foreground="White" TextTrimming="CharacterEllipsis"   />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+
+                
+                <!--<StackPanel Orientation="Vertical" Margin="0">
                     <Image Source="{Binding ImagePath}" />
                     <TextBlock Text="{Binding Label}" />
                     <TextBlock>
@@ -35,16 +75,16 @@
                         </Span>
                     </TextBlock>
                     
-                </StackPanel>
+                </StackPanel>-->
             </Button>
         </DataTemplate>
     </UserControl.Resources>
 
     <ItemsControl ItemsSource="{Binding Products}"
-                          ItemTemplate="{StaticResource ProductTemplate}">
+                          ItemTemplate="{StaticResource ProductTemplate}" >
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <WrapPanel />
+                <UniformGrid Columns="4" Rows="4" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
     </ItemsControl>

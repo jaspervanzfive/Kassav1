@@ -55,11 +55,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutViewModel.cs" />
-    <Compile Include="AccessoriesViewModel.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="LockViewModel.cs" />
+    <Compile Include="Modules\Lock\LockViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="ProductsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,12 +65,13 @@
     <Compile Include="SelectedProductViewModel.cs" />
     <Compile Include="PurchasedProductViewModel.cs" />
     <Compile Include="ReceiptsViewModel.cs" />
-    <Compile Include="SettingsViewModel.cs" />
+    <Compile Include="Modules\Settings\SettingsViewModel.cs" />
     <Compile Include="SalesViewModel.cs" />
-    <Compile Include="SupportViewModel.cs" />
-    <Compile Include="TotalsViewModel.cs" />
-    <Compile Include="UsersViewModel.cs" />
-    <Compile Include="CustomersViewModel.cs" />
+    <Compile Include="Modules\Support\SupportViewModel.cs" />
+    <Compile Include="Modules\Totals\TotalsViewModel.cs" />
+    <Compile Include="Modules\Transactions\TransactionsViewModel.cs" />
+    <Compile Include="Modules\Users\UsersViewModel.cs" />
+    <Compile Include="Modules\Customers\CustomersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -89,6 +88,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\sample.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\Products\" />
+    <Folder Include="Modules\Sales\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sumi_black.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\nike.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
