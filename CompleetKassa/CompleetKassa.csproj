@@ -243,5 +243,33 @@
   <ItemGroup>
     <Resource Include="Icons\person.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\compleetlogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\LockBackground\BG1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\LockBackground\BG2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\LockBackground\BG3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\LockBackground\lockperson.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\LockBackground\EllipseBlack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\LockBackground\lockcancel.png" />
+    <Resource Include="Icons\LockBackground\lockok.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

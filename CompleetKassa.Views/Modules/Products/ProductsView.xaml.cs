@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompleetKassa.Views.Modules.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace CompleetKassa.Views
 {
@@ -27,7 +29,9 @@ namespace CompleetKassa.Views
 
         private void AddPage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-        
+            ProductsViewAdd page = new ProductsViewAdd();
+            SidePage.Content = page;
+
             AddButton.BorderThickness = new Thickness(1, 1, 1, 1);
             CategoryButton.BorderThickness = new Thickness(0, 0, 0, 0);
         }

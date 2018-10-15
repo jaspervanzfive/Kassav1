@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:CompleetKassa.ViewModels;assembly=CompleetKassa.ViewModels"
         xmlns:views="clr-namespace:CompleetKassa.Views;assembly=CompleetKassa.Views"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="POSBetav1.5"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
@@ -50,6 +51,10 @@
 
         <DataTemplate DataType="{x:Type viewModels:CustomersViewModel}">
             <views:CustomersView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:UsersViewModel}">
+            <views:UsersView/>
         </DataTemplate>
 
 
@@ -120,24 +125,30 @@
             </Style.Triggers>
         </Style>
 
-        <!--<Style TargetType="{x:Type PasswordBox}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-            <Setter Property="CaretBrush" Value="White"/>
-            <Setter Property="TextElement.Foreground" Value="White"/>
-            <Style.Resources>
-                <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                </Border>
-            </Style.Resources>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
-                </Trigger>
-                <Trigger Property="IsFocused" Value="true">
-                    <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
-                </Trigger>
-            </Style.Triggers>
-        
-        </Style>-->
+
+        <Style TargetType="{x:Type Button}" x:Key="CircleButton">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#363838" />
+            <Setter Property="Opacity"  Value="0.6"/>
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}" x:Name="elipse"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <!--<ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background"  Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>-->
+                        
+                    </ControlTemplate>
+                    
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Window.Resources>
 	<Window.DataContext>
@@ -223,8 +234,244 @@
             </StackPanel>
 
         </Grid>
+        
+        
+        <!-- Lock Page -->
+        <Grid x:Name="LockPage" Visibility="Hidden" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
 
-        <!--Login Page/Lock-->
+            <Image Grid.Row="1" Source="Icons/LockBackground/BG1.png" Stretch="UniformToFill" ></Image>
+            <Grid Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.365*" />
+                    <ColumnDefinition Width="0.27*" />
+                    <ColumnDefinition Width="0.365*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1" Background="#000" Opacity="0.5"> 
+                    
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.3*"/>
+                        <RowDefinition Height="0.7*"/>
+                        <RowDefinition Height="0.3*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="1" Source="Icons/compleetlogo.png" HorizontalAlignment="Center" Stretch="Uniform" Margin="10"></Image>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="10,30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.15*"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Style="{StaticResource CircleButton}" Margin="30,5,5,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin1">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content1" Text="1" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black1" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+                                <Button Grid.Column="1" Style="{StaticResource CircleButton}" Margin="18,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin2">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content2" Text="2" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black2" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+                                <Button Grid.Column="2" Style="{StaticResource CircleButton}" Margin="5,5,30,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin3">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content3" Text="3" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black3" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+                                
+                            </Grid>
+                            
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Style="{StaticResource CircleButton}" Margin="30,5,5,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin4">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content4" Text="4" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black4" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+                                <Button Grid.Column="1" Style="{StaticResource CircleButton}" Margin="18,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin5">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content5" Text="5" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black5" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+                                <Button Grid.Column="2" Style="{StaticResource CircleButton}" Margin="5,5,30,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin6">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content6" Text="6" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black6" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+
+                            </Grid>
+
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Style="{StaticResource CircleButton}" Margin="30,5,5,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin7">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content7" Text="7" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black7" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+                                <Button Grid.Column="1" Style="{StaticResource CircleButton}" Margin="18,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin8">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content8" Text="8" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black8" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+                                <Button Grid.Column="2" Style="{StaticResource CircleButton}" Margin="5,5,30,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin9">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content9" Text="9" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black9" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+
+                            </Grid>
+
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Style="{StaticResource CircleButton}" Margin="30,5,5,5"  Background="#363838" >
+                                    <Image  Source="Icons/LockBackground/lockcancel.png" Margin="17" MaxHeight="35" MaxWidth="35"/>
+                                </Button>
+
+                                <Button Grid.Column="1" Style="{StaticResource CircleButton}" Margin="18,5" PreviewMouseDown="pinButton_MouseDown" Background="#363838" Name="pin0">
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock Name="content0" Text="0" Foreground="#fff" Margin="0,10" Style="{StaticResource MainFont}" Visibility="Visible"/>
+                                        </Viewbox>
+                                        <Image Name="black0" Source="Icons/LockBackground/EllipseBlack.png" Margin="20" Visibility="Hidden" MaxHeight="25" MaxWidth="25"/>
+                                    </Grid>
+                                </Button>
+
+                                <Button Grid.Column="2" Style="{StaticResource CircleButton}" Margin="5,5,30,5"  PreviewMouseDown="LockOk_MouseDown" Background="#363838">
+                                    <Image  Source="Icons/LockBackground/lockok.png" Margin="17" MaxHeight="35" MaxWidth="35"/>
+                                </Button>
+
+
+                            </Grid>
+
+                        </Grid>
+                        
+                       
+
+                      
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+            <Grid Grid.Row="0" Background="#000000" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition  />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,30,0">
+                    <Image Source="Icons/LockBackground/lockperson.png" Stretch="UniformToFill" Margin="20"/>
+                    <Viewbox>
+                        <TextBlock Text="Donaldo Trumpo" Foreground="#808080" Margin="0,20" Style="{StaticResource MainFont}"/>
+                    </Viewbox>
+                </StackPanel>
+               
+
+                <Viewbox HorizontalAlignment="Right" Grid.Column="1" >
+                    <TextBlock x:Name="TimeTxt" Foreground="#808080" Margin="10,10,50,10" Style="{StaticResource MainFont}"/>
+                </Viewbox>
+
+            </Grid>
+
+
+            <Grid Grid.Row="2" Background="#000000" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition  />
+                </Grid.ColumnDefinitions>
+                <Viewbox HorizontalAlignment="Left" >
+                    <TextBlock Text="The icestore Greenstreet 18 London" Foreground="#808080" Margin="10" Style="{StaticResource MainFont}"/>
+                </Viewbox>
+
+                <Viewbox HorizontalAlignment="Right" Grid.Column="1" >
+                    <TextBlock Text="Forgot Passcode?" Foreground="#808080" Margin="10,10,50,10" Style="{StaticResource MainFont}"/>
+                </Viewbox>
+
+            </Grid>
+        </Grid>
+        
+
+        <!--Login Page-->
         <Grid x:Name="LoginPage" Visibility="Visible">
             <Image Source="Icons/LoginBG.png" Stretch="Fill"></Image>
 
@@ -250,7 +497,7 @@
                         
                         
                         <Border Grid.Row="0" CornerRadius="5,5,0,0" Background="#363838" Margin="35,0" MaxHeight="110" MaxWidth="290">
-                            <Image Source="Icons/compleekassalogo.png" Stretch="Uniform" Margin="15"/>
+                            <Image Source="Icons/compleetlogo.png" Stretch="Uniform" Margin="20"/>
 
 
 

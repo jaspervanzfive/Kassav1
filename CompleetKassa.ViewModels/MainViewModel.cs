@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Timers;
 using System.Windows.Input;
+using System.Windows.Threading;
 using CompleetKassa.ViewModels.Commands;
 using MahApps.Metro.Controls;
 using MahApps.Metro.IconPacks;
@@ -45,12 +48,11 @@ namespace CompleetKassa.ViewModels
 
             OnChangePageCommand = new BaseCommand (ChangePageCommand);
 
+           
 
-
-
-		}
-
-		void ChangePageCommand (object obj)
+        }
+     
+        void ChangePageCommand (object obj)
 		{
 			var page = (BaseViewModel)obj;
 

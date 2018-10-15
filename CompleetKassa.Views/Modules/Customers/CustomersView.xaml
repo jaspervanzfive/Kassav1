@@ -14,6 +14,18 @@
         <Style x:Key="MainFont">
             <Setter Property="TextElement.FontFamily" Value="Open Sans Semibold"/>
         </Style>
+
+        <ControlTemplate x:Key="SelectedItem" TargetType="{x:Type ListBoxItem}">
+            <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" 
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            
+                                  />
+            </Border>
+        </ControlTemplate>
+        <SolidColorBrush x:Key="Background" Color="#2E4051"/>
+        
     </UserControl.Resources>
     <Grid SnapsToDevicePixels="True" UseLayoutRounding="True" Background="#2E4051">
 
@@ -34,9 +46,142 @@
                     <TextBlock Foreground="#fff" Text="compleetshop" FontFamily="Open Sans Semibold" Margin="0,5"></TextBlock>
                 </Viewbox>
 
+            </Grid>
 
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.22*"/>
+                    <ColumnDefinition  Width="0.78*"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.05*"/>
+                        <RowDefinition Height="0.95*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Background="#1F2E3C" Margin="2" Orientation="Horizontal">
+                        <Viewbox>
+                            <TextBlock Text="Client Group" Margin="5"
+                                       Foreground="#0684B2"  Style="{StaticResource ResourceKey=FontBold}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Viewbox>
+                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <ListBox x:Name="parentcat" Grid.Row="1"  HorizontalContentAlignment="Stretch"  ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Background="{StaticResource Background}" Margin="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Border x:Name="border" BorderThickness="2" BorderBrush="Transparent" Panel.ZIndex="-1" Margin="-2,0,0,0">
+                                            <Grid Background="#1F2E3C" HorizontalAlignment="Stretch" Height="55" x:Name="grid" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Foreground="White" Margin="10,0,0,0" FontFamily="Arial" />
+                                                <Ellipse Width="10" Height="10" Grid.Column="1" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="2">
+                                                    <Ellipse.RenderTransform>
+                                                        <TranslateTransform X="5"/>
+                                                    </Ellipse.RenderTransform>
+                                                    <Ellipse.Fill>
+                                                        <SolidColorBrush Color="{Binding Color}"/>
+                                                    </Ellipse.Fill>
+                                                </Ellipse>
+                                                <Polygon Points="16,0 0,10, 16,20" Stroke="Transparent" Fill="{StaticResource Background}" Grid.ColumnSpan="2" 
+                                     HorizontalAlignment="Right" VerticalAlignment="Center" x:Name="selectedTriangle" Visibility="Hidden" Panel.ZIndex="1" Margin="0,0,-2,0"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Value="True" Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}">
+                                            <Setter TargetName="border" Property="BorderBrush">
+                                                <Setter.Value>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.0,0">
+                                                        <GradientStop Color="#FF0A6C91" Offset="0"/>
+                                                        <GradientStop Color="#FF114961" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter TargetName="grid" Property="Background" Value="#1A2530"/>
+                                            <!--<Setter TargetName="selectedTriangle" Property="Visibility" Value="Visible"/>-->
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"  Value="True">
+                                            <Setter TargetName="grid" Property="Background" Value="#1A2530"/>
+                                        </DataTrigger>
+
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Padding" Value="3,0"/>
+                                    <Setter Property="Template" Value="{StaticResource SelectedItem}"/>
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.05*"/>
+                        <RowDefinition Height="0.95*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Background="#1F2E3C" Margin="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.20*"/>
+                            <ColumnDefinition  Width="0.28*"/>
+                            <ColumnDefinition  Width="0.28*"/>
+                            <ColumnDefinition  Width="0.08*"/>
+                            <ColumnDefinition  Width="0.08*"/>
+                            <ColumnDefinition  Width="0.08*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Background="#1F2E3C" Margin="2" Orientation="Horizontal">
+                            <Viewbox>
+                                <TextBlock Text="Customer id" Margin="25,5"
+                                       Foreground="#0684B2"  Style="{StaticResource ResourceKey=FontBold}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Viewbox>
+                        </StackPanel>
+                        <StackPanel Background="#1F2E3C" Margin="2" Orientation="Horizontal" Grid.Column="1">
+                            <Viewbox>
+                                <TextBlock Text="Clientname" Margin="25,5"
+                                       Foreground="#0684B2"  Style="{StaticResource ResourceKey=FontBold}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Viewbox>
+                        </StackPanel>
+                        <StackPanel Background="#1F2E3C" Margin="2" Orientation="Horizontal" Grid.Column="2">
+
+                            <Viewbox>
+                                <TextBlock Text="Email" Margin="15,5"
+                                       Foreground="#0684B2"  Style="{StaticResource ResourceKey=FontBold}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Viewbox>
+                        </StackPanel>
+                        <StackPanel Background="#1F2E3C" Margin="2" Orientation="Horizontal" Grid.Column="3">
+                            <Viewbox>
+                                <TextBlock Text="Visits" Margin="0,5"
+                                       Foreground="#0684B2"  Style="{StaticResource ResourceKey=FontBold}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Viewbox>
+                        </StackPanel>
+                        <StackPanel Background="#1F2E3C" Margin="2" Orientation="Horizontal" Grid.Column="4">
+                            <Viewbox>
+                                <TextBlock Text="Point" Margin="0,5"
+                                       Foreground="#0684B2"  Style="{StaticResource ResourceKey=FontBold}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Viewbox>
+                        </StackPanel>
+                        <StackPanel Background="#1F2E3C" Margin="2" Orientation="Horizontal" Grid.Column="5">
+                            <Viewbox>
+                                <TextBlock Text="Spend" Margin="0,5"
+                                       Foreground="#0684B2"  Style="{StaticResource ResourceKey=FontBold}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Viewbox>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1"  Margin="2,0,0,0" Background="White">
+
+                    </Grid>
+                </Grid>
 
             </Grid>
+            <!--<Button Content="Close" Command="{Binding OnClosePageCommand}" HorizontalAlignment="Left" Height="74" Margin="330,51,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149"/>-->
+            <!--<TextBox Grid.Row="1" Height="50" Foreground="Red" FontSize="30" Width="300" FontFamily="Open Sans Semibold" Text="{Binding SampleString}" />-->
         </Grid>
 
 

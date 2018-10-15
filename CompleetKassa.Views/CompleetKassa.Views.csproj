@@ -79,6 +79,12 @@
     <Compile Include="Modules\Products\ProductsView.xaml.cs">
       <DependentUpon>ProductsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Products\ProductsViewAddPage.xaml.cs">
+      <DependentUpon>ProductsViewAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Products\ProductsViewCategoryPage.xaml.cs">
+      <DependentUpon>ProductsViewCategoryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -141,6 +147,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Products\ProductsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Products\ProductsViewAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Products\ProductsViewCategoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,6 +283,12 @@
     <Resource Include="Icons\categorytag.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\Products\Images\prod_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\rights.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

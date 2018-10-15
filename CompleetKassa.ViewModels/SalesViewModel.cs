@@ -211,6 +211,7 @@ namespace CompleetKassa.ViewModels
             SubCategoryFilter = string.Empty;
         }
 
+        // TODO: DATABASE, Get Categories from DB
         private void GetCategories(IList<Product> products)
         {
             //Dummy Colors of Categories
