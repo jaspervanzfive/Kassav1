@@ -156,11 +156,10 @@
     </Window.DataContext>
 
     <Grid SnapsToDevicePixels="True" UseLayoutRounding="True">
-      
 
-       
-        
-       <!-- Contains the Main App after login-->
+
+
+        <!-- Contains the Main App after login-->
         <Grid x:Name="MainGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.07*"/>
@@ -172,7 +171,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Grid Background="#0193C6">
-
+                    
                 </Grid>
 
                 <!-- Navigation Buttons -->
@@ -522,11 +521,14 @@
 
                                 <Border CornerRadius="4" Background="#6CAFBD" Margin="30,15" Height="30" MaxHeight="30" MouseDown="Login_MouseDown">
 
+                                    
                                     <TextBlock FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Text="LOGIN" Foreground="#fff" Style="{StaticResource MainFont}" ></TextBlock>
                                 </Border>
 
+                                <TextBox Width="170" Text="{Binding TextBinding, Mode=TwoWay}" BorderBrush="Red" Foreground="Red"></TextBox>
+                                
                                 <TextBlock FontSize="12" HorizontalAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Text="Password vergeten?" Foreground="#fff" Style="{StaticResource MainFont}" Margin="0,5" MouseDown="PasswordForgotten_Event"/>
-
+                              
                             </StackPanel>
                            
                         </Border>

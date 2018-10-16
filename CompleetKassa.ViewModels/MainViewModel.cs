@@ -19,6 +19,7 @@ namespace CompleetKassa.ViewModels
 			private set;
 		}
 
+
         public BaseViewModel DefaultViewModel { get; set; }
 
         BaseViewModel _currentPageViewModel;
@@ -35,7 +36,17 @@ namespace CompleetKassa.ViewModels
 
 		public ICommand OnChangePageCommand { get; private set; }
 
-    
+
+        private string textBinding;
+        public string TextBinding
+        {
+            get { return textBinding; }
+            set
+            {
+                textBinding = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         public MainViewModel () : base ("Main","#fff", "Icons/product.png")
@@ -48,7 +59,7 @@ namespace CompleetKassa.ViewModels
 
             OnChangePageCommand = new BaseCommand (ChangePageCommand);
 
-           
+            TextBinding = "This is from view model to view";
 
         }
      
