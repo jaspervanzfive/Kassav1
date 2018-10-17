@@ -8,7 +8,7 @@
     <OutputType>library</OutputType>
     <RootNamespace>CompleetKassa.Views</RootNamespace>
     <AssemblyName>CompleetKassa.Views</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -187,10 +187,6 @@
     <ProjectReference Include="..\CompleetKassa.DataTypes\CompleetKassa.DataTypes.csproj">
       <Project>{4a30f1e9-0a08-4347-9324-cdcf24f79aba}</Project>
       <Name>CompleetKassa.DataTypes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CompleetKassa.Models\CompleetKassa.Models.csproj">
-      <Project>{C4466761-0B4D-4BBC-A70E-CBCC77C98C18}</Project>
-      <Name>CompleetKassa.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\CompleetKassa.ViewModels\CompleetKassa.ViewModels.csproj">
       <Project>{D961A431-F2A9-407E-AC14-9AB8027B1003}</Project>

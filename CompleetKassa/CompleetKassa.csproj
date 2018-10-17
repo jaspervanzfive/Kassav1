@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>CompleetKassa</RootNamespace>
     <AssemblyName>CompleetKassa</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -128,10 +128,6 @@
     <ProjectReference Include="..\CompleetKassa.DataTypes\CompleetKassa.DataTypes.csproj">
       <Project>{4a30f1e9-0a08-4347-9324-cdcf24f79aba}</Project>
       <Name>CompleetKassa.DataTypes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CompleetKassa.Models\CompleetKassa.Models.csproj">
-      <Project>{c4466761-0b4d-4bbc-a70e-cbcc77c98c18}</Project>
-      <Name>CompleetKassa.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\CompleetKassa.ViewModels\CompleetKassa.ViewModels.csproj">
       <Project>{d961a431-f2a9-407e-ac14-9ab8027b1003}</Project>

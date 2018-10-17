@@ -31,7 +31,7 @@
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource PurchasedItemConverter}">
                         <Binding Path="ID"/>
-                        <Binding Path="Label"/>
+                        <Binding Path="Name"/>
                         <Binding Path="Price"/>
                     </MultiBinding>
                 </Button.CommandParameter>
